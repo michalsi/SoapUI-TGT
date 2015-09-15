@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="716cb186-4c0f-48ed-9412-2f09e145e14a" activeEnvironment="Default" name="8. Mock Service" resourceRoot="" soapui-version="5.2.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="013100bf-0318-44b4-b6e2-35b0e2adabe5" wsaVersion="NONE" name="Hello_Binding" type="wsdl" bindingName="{http://www.examples.com/wsdl/HelloService.wsdl}Hello_Binding" soapVersion="1_1" anonymous="optional" definition="file:/Users/michals/Documents/Pracowe/Prezentacje/SoapUI/HelloService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/michals/Documents/Pracowe/Prezentacje/SoapUI/HelloService.wsdl"><con:part><con:url>file:/Users/michals/Documents/Pracowe/Prezentacje/SoapUI/HelloService.wsdl</con:url><con:content><![CDATA[<definitions name="HelloService" targetNamespace="http://www.examples.com/wsdl/HelloService.wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.examples.com/wsdl/HelloService.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <message name="SayHelloRequest">
+    <part name="firstName" type="xsd:string"/>
+  </message>
+  <message name="SayHelloResponse">
+    <part name="greeting" type="xsd:string"/>
+  </message>
+  <portType name="Hello_PortType">
+    <operation name="sayHello">
+      <input message="tns:SayHelloRequest"/>
+      <output message="tns:SayHelloResponse"/>
+    </operation>
+  </portType>
+  <binding name="Hello_Binding" type="tns:Hello_PortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sayHello">
+      <soap:operation soapAction="sayHello"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="Hello_Service">
+    <documentation>WSDL File for HelloService</documentation>
+    <port binding="tns:Hello_Binding" name="Hello_Port">
+      <soap:address location="http://www.examples.com/SayHello/"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://huntresss.local:8088/mockHello_Binding</con:endpoint><con:endpoint>http://www.examples.com/SayHello/</con:endpoint></con:endpoints><con:operation id="3562de18-829a-42b5-9867-d949f9616d44" isOneWay="false" action="sayHello" name="sayHello" bindingOperationName="sayHello" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e279527f-3b77-47bd-92ae-f54199ba341a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://huntresss.local:8088/mockHello_Binding</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:examples:helloservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:sayHello soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <firstName xsi:type="xsd:string">John</firstName>
+      </urn:sayHello>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sayHello"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="35f62abd-dd13-409e-9efb-de34d4d82f4e" port="8088" path="/mockHello_Binding" host="huntresss.local" name="Hello_Binding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="sayHello" id="a0aa0f7b-fc36-46ad-bfed-c2157cc03e89" interface="Hello_Binding" operation="sayHello"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="8d5ac0e6-6e4c-41fc-90ea-6710bf1e1457" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>def holder = new com.eviware.soapui.support.XmlHolder( mockRequest.requestContent )
+
+def name = holder.getNodeValue( "//firstName" )
+
+if (name.substring(0,2)=="Mr")
+    requestContext.greeting="Hello "+name;
+else 
+    requestContext.greeting="Hi " + name;
+</con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:examples:helloservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:sayHelloResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <greeting xsi:type="xsd:string">${greeting}, How are you ?</greeting>
+      </urn:sayHelloResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="sayHello"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
