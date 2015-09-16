@@ -4,7 +4,7 @@
   &lt;con:entry key="Accept" value="application/json"/>
 &lt;/xml-fragment></con:setting></con:settings><con:endpoint>https://love-calculator.p.mashape.com</con:endpoint><con:request/><con:originalUri>https://love-calculator.p.mashape.com/getPercentage</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
   <con:entry key="sbane" value="Alice"/>
-  <con:entry key="sname" value="John"/>
+  <con:entry key="sname" value="kate"/>
   <con:entry key="fname" value="Mike"/>
 </con:parameters><con:parameterOrder><con:entry>fname</con:entry><con:entry>sname</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="252e69e0-7972-47d1-b9b6-1e913f990439" name="LoveCalculator"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="25381d65-7c5d-4b33-8075-dbf05965ed34" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Assertion" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="GetPercentage - XPathAssertion" id="33879f5c-276e-48e5-957e-22354d5e8a83"><con:settings/><con:config service="https://love-calculator.p.mashape.com" resourcePath="/getPercentage" methodName="GetPercentage" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GetPercentage - XPathAssertion" id="b9fa904d-3a15-407f-aae5-8fe1efd6c37e" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
   &lt;con:entry key="X-Mashape-Key" value="A3H7H7G6ommsh0GmcAaJJw8cXxw4p183uF9jsnoC6GB9MHE7Rr"/>
@@ -26,6 +26,6 @@ let $x := //ns1:percentage
 
 return &lt;Result>{data($x>"50")}&lt;/Result></path><content>&lt;Result>true&lt;/Result></content><allowWildcards>false</allowWildcards></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
   <con:entry key="sbane" value="Alice"/>
-  <con:entry key="sname" value="Alice"/>
+  <con:entry key="sname" value="Kate"/>
   <con:entry key="fname" value="Mike"/>
 </con:parameters><con:parameterOrder><con:entry>fname</con:entry><con:entry>sname</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
